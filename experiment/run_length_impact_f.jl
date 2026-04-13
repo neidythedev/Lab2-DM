@@ -52,12 +52,12 @@ function run_length_experiment()
         push!(results, (len, stats.time))
     end
     
-    open("results_length.csv", "w") do f
+    open("experiment_results/results_length.csv", "w") do f
         println(f, "Length,Time_s")
         for r in results; println(f, "$(r[1]),$(r[2])"); end
     end
     println("-"^65)
-    println("✅ THÀNH CÔNG. Kết quả đã lưu vào: results_length.csv")
+    println("✅ THÀNH CÔNG. Kết quả đã lưu vào: experiment_results/results_length.csv")
 end
 
 run_length_experiment()

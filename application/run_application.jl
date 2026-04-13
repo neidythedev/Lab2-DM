@@ -36,7 +36,7 @@ end
 
 function run_mba()
     file_path = "data/benchmark/retail.txt"
-    output_csv = "application_results.csv"
+    output_csv = "application/application_results.csv"
     min_sup_abs = 500
     min_conf = 0.4
     

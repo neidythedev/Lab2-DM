@@ -15,7 +15,7 @@ spmf_data = Dict(
 )
 
 # 2. ĐỌC DỮ LIỆU JULIA CỦA NHÓM
-df = CSV.read("results_experiment.csv", DataFrame)
+df = CSV.read("experiment_results/results_experiment.csv", DataFrame)
 
 # --- THÍ NGHIỆM 4.B: SO SÁNH NHÓM VS SPMF ---
 for dataset in ["Chess", "Mushroom", "Accident", "Retail"]
@@ -91,8 +91,8 @@ p_mem = groupedbar(labels, [basic_rams opt_rams],
 savefig("charts/memory_comparison_bar.png")
 
 # --- THÍ NGHIỆM 4.E: SCALABILITY ---
-if isfile("results_scalability.csv")
-    df_scal = CSV.read("results_scalability.csv", DataFrame)
+if isfile("experiment_results/results_scalability.csv")
+    df_scal = CSV.read("experiment_results/results_scalability.csv", DataFrame)
     p_scal = plot(df_scal.Percentage .* 100, df_scal.Time_s,
         label="Optimized Eclat (Julia)",
         title="Scalability Analysis (Accident)",
@@ -102,8 +102,8 @@ if isfile("results_scalability.csv")
 end
 
 # --- THÍ NGHIỆM 4.F: ẢNH HƯỞNG ĐỘ DÀI GIAO DỊCH ---
-if isfile("results_length.csv")
-    df_len = CSV.read("results_length.csv", DataFrame)
+if isfile("experiment_results/results_length.csv")
+    df_len = CSV.read("experiment_results/results_length.csv", DataFrame)
     p_len = plot(df_len.Length, df_len.Time_s,
         label="Eclat Runtime", title="Impact of Transaction Length",
         xlabel="Average Transaction Length", ylabel="Time (s)",

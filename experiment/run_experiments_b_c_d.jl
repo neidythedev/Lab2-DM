@@ -16,7 +16,7 @@ function start_experiment()
         ("Retail", "data/benchmark/retail.txt", [882, 441, 177, 89, 45])
     ]
 
-    csv_path = "results_experiment.csv"
+    csv_path = "experiment_results/results_experiment.csv"
     f_csv = open(csv_path, "w")
     header = "Dataset,Minsup,FI_Count,Basic_Time_s,Opt_Time_s,Speedup,Basic_RAM_MB,Opt_RAM_MB,Memory_Saving_Ratio"
     println(f_csv, header)
@@ -84,7 +84,7 @@ function start_experiment()
         println("-"^125)
     end
     close(f_csv)
-    println("✅ THỰC NGHIỆM HOÀN TẤT. File kết quả: results_experiment.csv")
+    println("✅ THỰC NGHIỆM HOÀN TẤT. File kết quả: experiment_results/results_experiment.csv")
 end
 
 start_experiment()

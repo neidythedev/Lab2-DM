@@ -62,7 +62,7 @@ function run_scalability()
     warmup_before_measuring(all_transactions, sorted_items)
 
     percentages = [0.10, 0.25, 0.50, 0.75, 1.00]
-    csv_path = "results_scalability.csv"
+    csv_path = "experiment_results/results_scalability.csv"
     f_csv = open(csv_path, "w")
     println(f_csv, "Percentage,Num_Transactions,Time_s")
 
@@ -91,7 +91,7 @@ function run_scalability()
     
     close(f_csv)
     println("-"^70)
-    println("✅ HOÀN TẤT. Kết quả lưu tại: results_scalability.csv")
+    println("✅ HOÀN TẤT. Kết quả lưu tại: experiment_results/results_scalability.csv")
 end
 
 run_scalability()
