@@ -5,7 +5,7 @@ export run_eclat_optimized
 
 function run_eclat_optimized(P::Vector{ItemsetOptimized}, min_sup::Int, F::Vector{ItemsetOptimized})
     # P là lớp tương đương hiện tại (Equivalence Class)
-    for i in 1:length(P)
+    @inbounds for i in 1:length(P)
         # 1. Thêm tập phổ biến hiện tại vào kết quả
         push!(F, P[i])
 

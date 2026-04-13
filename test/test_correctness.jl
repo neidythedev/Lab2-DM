@@ -1,4 +1,3 @@
-# File: tests/test_correctness.jl
 using Pkg; Pkg.activate(".")
 include("../src/structures.jl")
 include("../src/utils.jl")

@@ -1,9 +1,8 @@
-# File: tests/plot_results.jl
 using Pkg; Pkg.activate(".")
 using Plots, CSV, DataFrames, StatsPlots
 
-# Đảm bảo thư mục docs tồn tại
-!isdir("docs") && mkdir("docs")
+# Đảm bảo thư mục charts tồn tại
+!isdir("charts") && mkdir("charts")
 
 println("--- Đang xử lý dữ liệu và vẽ biểu đồ thực nghiệm... ---")
 
@@ -31,7 +30,7 @@ for dataset in ["Chess", "Mushroom", "Accident", "Retail"]
         marker=[:circle :square], linewidth=2,
         yaxis=:log10, legend=:bottomleft)
     
-    savefig("docs/compare_spmf_$dataset.png")
+    savefig("charts/compare_spmf_$dataset.png")
 end
 
 # --- THÍ NGHIỆM 4.C: SỐ LƯỢNG FI (OUTPUT SIZE) ---
@@ -44,14 +43,14 @@ p_dense = plot(chess_df.Minsup, chess_df.FI_Count,
     label="Chess (Dày)", title="FI Count: Dense Data",
     xlabel="Minsup", ylabel="Number of FIs",
     marker=:circle, color=:blue, linewidth=2, yaxis=:log10)
-savefig("docs/fi_count_dense.png")
+savefig("charts/fi_count_dense.png")
 
 # Vẽ biểu đồ cho tập Thưa (Retail)
 p_sparse = plot(retail_df.Minsup, retail_df.FI_Count,
     label="Retail (Thưa)", title="FI Count: Sparse Data",
     xlabel="Minsup", ylabel="Number of FIs",
     marker=:square, color=:green, linewidth=2, yaxis=:log10)
-savefig("docs/fi_count_sparse.png")
+savefig("charts/fi_count_sparse.png")
 
 # --- THÍ NGHIỆM 4.D: SO SÁNH BỘ NHỚ (MEMORY USAGE) ---
 println("--- Đang vẽ biểu đồ so sánh bộ nhớ... ---")
@@ -89,7 +88,7 @@ p_mem = groupedbar(labels, [basic_rams opt_rams],
     legend=:topleft,
     background_color_legend = RGBA(1,1,1,0.6))
 
-savefig("docs/memory_comparison_bar.png")
+savefig("charts/memory_comparison_bar.png")
 
 # --- THÍ NGHIỆM 4.E: SCALABILITY ---
 if isfile("results_scalability.csv")
@@ -99,7 +98,7 @@ if isfile("results_scalability.csv")
         title="Scalability Analysis (Accident)",
         xlabel="Data Size (%)", ylabel="Time (s)",
         marker=:square, color=:red, linewidth=2, legend=:topleft)
-    savefig("docs/chart_scalability.png")
+    savefig("charts/chart_scalability.png")
 end
 
 # --- THÍ NGHIỆM 4.F: ẢNH HƯỞNG ĐỘ DÀI GIAO DỊCH ---
@@ -109,8 +108,7 @@ if isfile("results_length.csv")
         label="Eclat Runtime", title="Impact of Transaction Length",
         xlabel="Average Transaction Length", ylabel="Time (s)",
         marker=:diamond, color=:blue, linewidth=2, legend=:topleft, yaxis=:log10)
-    savefig("docs/chart_length_impact.png")
+    savefig("charts/chart_length_impact.png")
 end
 
-println("✅ HOÀN TẤT: Toàn bộ biểu đồ đã được lưu trong thư mục docs/")
-
+println("✅ HOÀN TẤT: Toàn bộ biểu đồ đã được lưu trong thư mục charts/")
