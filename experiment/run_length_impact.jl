@@ -10,6 +10,7 @@ function get_data(n, m, l)
 end
 
 function run_length_experiment()
+    Random.seed!(42) 
     n_trans = 1000
     n_items = 50
     lengths = [5, 10, 15, 20, 25, 30] 
