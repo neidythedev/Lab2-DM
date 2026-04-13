@@ -1,4 +1,3 @@
-# File: tests/run_scalability.jl
 using Pkg; Pkg.activate(".")
 include("../src/structures.jl")
 include("../src/utils.jl")

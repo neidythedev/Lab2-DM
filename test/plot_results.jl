@@ -1,4 +1,3 @@
-# File: tests/plot_results.jl
 using Pkg; Pkg.activate(".")
 using Plots, CSV, DataFrames, StatsPlots
 

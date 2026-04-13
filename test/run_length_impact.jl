@@ -1,4 +1,3 @@
-# File: tests/run_length_impact.jl
 using Pkg; Pkg.activate(".")
 include("../src/structures.jl")
 include("../src/algorithm/eclat_optimized.jl")
