@@ -16,7 +16,7 @@ Thuật toán Eclat sử dụng cách tiếp cận duyệt theo chiều sâu (DF
 ## 3. Cài đặt môi trường
 Để đảm bảo tính tái lập và tránh xung đột thư viện, nhóm sử dụng môi trường riêng của dự án thông qua file `Project.toml`.
 
-1.  Mở Terminal tại thư mục gốc của đồ án (`LAB2-DM/`).
+1.  Mở Terminal tại thư mục gốc của đồ án (`Group_2/`).
 2.  Khởi động Julia với môi trường hiện tại:
     ```bash
     julia --project=.
@@ -28,7 +28,7 @@ Thuật toán Eclat sử dụng cách tiếp cận duyệt theo chiều sâu (DF
 
 ## 4. Cấu trúc thư mục
 ```text
-LAB2-DM/
+Group_2/
 ├── main.jl                 # Trình điều khiển chính, hỗ trợ tham số dòng lệnh (Level 4)
 ├── spmf.jar                # Công cụ tham chiếu quốc tế để đối soát kết quả
 ├── src/                    # Mã nguồn cốt lõi của dự án
