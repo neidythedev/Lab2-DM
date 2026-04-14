@@ -57,7 +57,7 @@ LAB2-DM/
 │   ├── benchmark/          # Các tập dữ liệu chuẩn: Chess, Mushroom, Retail...
 │   ├── toy/                # Dữ liệu nhỏ phục vụ các ví dụ minh họa tay
 │   ├── spmf/               # Các file đáp án chuẩn trích xuất từ phần mềm SPMF
-│   └── spmf_results/       # Lưu trữ chi tiết kết quả chạy đối soát
+│   └── spmf_results/       # Lưu trữ chi tiết kết quả từ thư viện SPMF để chạy đối soát
 ├── docs/                   # Chứa báo cáo PDF hoàn thiện
 ├── notebooks/              # Giao diện Demo trực quan bằng Jupyter Notebook
 ├── Project.toml            # Định nghĩa môi trường và các thư viện phụ thuộc
