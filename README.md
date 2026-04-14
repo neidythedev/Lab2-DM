@@ -2,6 +2,11 @@
 
 Dự án này thực hiện cài đặt và đánh giá thuật toán **Eclat (Equivalence CLASS Transformation)** bằng ngôn ngữ lập trình Julia. Đây là một phần của môn học **Khai thác dữ liệu và ứng dụng**.
 
+## Thành viên thực hiện
+
+*   **Lê Quốc Thiện** (23127481)
+*   **Phạm Quang Thịnh** (23127485)
+
 ## 1. Giới thiệu
 Thuật toán Eclat sử dụng cách tiếp cận duyệt theo chiều sâu (DFS) trên mô hình dữ liệu dọc (Vertical Data Layout) để tìm kiếm các tập mục phổ biến. Phiên bản này được tối ưu hóa bằng cấu trúc `BitArray` giúp tăng tốc phép giao tập hợp (Intersection) ở mức CPU.
 
@@ -131,6 +136,17 @@ Sau khi đã chạy các script thực nghiệm và có file CSV trong `experime
 julia --project=. experiment/plot_results.jl
 ```
 
-## 6. Thành viên thực hiện
-*   **Lê Quốc Thiện** (23127481)
-*   **Phạm Quang Thịnh** (23127485)
+## 6. Kết quả kiểm thử cuối cùng (Unit Test Output)
+Dưới đây là kết quả chạy bộ kiểm thử tự động để đối soát tính đúng đắn với thư viện SPMF chuẩn quốc tế tại thời điểm đóng gói đồ án:
+```text
+julia --project=. test/runtests.jl
+Activating project at `D:\Data Mining\Lab2-DM`
+  ✅ toy_data.txt: Khớp 100% (9 tập).
+  ✅ chess.txt: Khớp 100% (11493 tập).
+  ✅ mushroom.txt: Khớp 100% (6961 tập).
+  ✅ retail.txt: Khớp 100% (136 tập).
+  ✅ accident.txt: Khớp 100% (2451 tập).
+
+Test Summary:                     | Pass  Total  Time
+Eclat Optimized vs SPMF Reference |   10     10  10.8s
+```
