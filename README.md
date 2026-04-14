@@ -91,10 +91,11 @@ julia --project=. test/test_benchmark.jl data/benchmark/mushroom.txt 2000
 ```
 
 ### 5.4. Lấy đáp án mẫu từ SPMF (Tạo Groundtruth)
+Cú pháp: java -jar spmf.jar run dEclat <input> <output> <minsup(percent)>
 Sử dụng tệp `spmf.jar` (Java) để trích xuất đáp án chuẩn phục vụ Unit Test:
 ```bash
-# Cú pháp: java -jar spmf.jar run dEclat <input> <output> <minsup>
-java -jar spmf.jar run dEclat data/benchmark/mushroom.txt data/spmf/mushroom_spmf.txt 2000
+
+java -jar spmf.jar run dEclat data/benchmark/mushroom.txt data/spmf/mushroom_spmf.txt 23.76%
 ```
 
 ### 5.5. Kiểm tra tính đúng đắn (Correctness Test)
