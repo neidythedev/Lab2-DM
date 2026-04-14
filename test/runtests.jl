@@ -39,6 +39,7 @@ end
 
     test_cases = [
         ("data/toy/toy_data.txt", 3, "data/spmf/toy_spmf.txt"),
+        ("data/benchmark/mushroom.txt", 2000, "data/spmf/mushroom_spmf.txt"),
         ("data/benchmark/chess.txt", 2500, "data/spmf/chess_spmf.txt"), ("data/benchmark/retail.txt", 997, "data/spmf/retail_spmf.txt"),
         ("data/benchmark/accident.txt", 199994, "data/spmf/accident_spmf.txt")
     ]
