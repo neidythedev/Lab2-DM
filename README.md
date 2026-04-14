@@ -90,7 +90,18 @@ So sánh trực tiếp Thời gian và RAM giữa bản **Set** và **BitArray**
 julia --project=. test/test_benchmark.jl data/benchmark/mushroom.txt 2000
 ```
 
+Dưới đây là nội dung mục **5.4** được thiết kế lại đẹp mắt, rõ ràng và bổ sung hướng dẫn quan trọng về cách nhập tham số để tránh lỗi kết quả bằng 0. Nhóm có thể copy đoạn này vào file `README.md`.
+
+---
+
 ### 5.4. Lấy đáp án mẫu từ SPMF (Tạo Groundtruth)
+
+Để phục vụ việc kiểm thử (Unit Test), nhóm sử dụng công cụ **SPMF** để trích xuất kết quả chuẩn.
+
+*   **Tải công cụ:** [Tải spmf.jar tại đây](https://drive.google.com/file/d/1lQXX706UQc0gSf00IuPZxwPSi6_apX5S/view?usp=sharing)
+*   **Cài đặt:** Sau khi tải về, hãy đặt tệp `spmf.jar` trực tiếp vào thư mục gốc của đồ án (`Group_2/`).
+
+
 Cú pháp: java -jar spmf.jar run dEclat <input> <output> <minsup(percent)>
 Sử dụng tệp `spmf.jar` (Java) để trích xuất đáp án chuẩn phục vụ Unit Test:
 ```bash
