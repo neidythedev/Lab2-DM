@@ -11,6 +11,7 @@ Thuật toán Eclat sử dụng cách tiếp cận duyệt theo chiều sâu (DF
     *   `CSV.jl`, `DataFrames.jl`: Xử lý dữ liệu và kết quả.
     *   `Plots.jl`, `StatsPlots.jl`: Vẽ biểu đồ thực nghiệm.
     *   `BenchmarkTools.jl`: Đo lường hiệu năng chuyên sâu.
+*   **Java:** Cần thiết để chạy tệp `spmf.jar` phục vụ đối soát kết quả.
 
 ## 3. Cài đặt môi trường
 Để đảm bảo tính tái lập và tránh xung đột thư viện, nhóm sử dụng môi trường riêng của dự án thông qua file `Project.toml`.
@@ -63,27 +64,57 @@ LAB2-DM/
 └── README.md               # Hướng dẫn cài đặt và sử dụng
 ```
 
-## 5.Hướng dẫn sử dụng và chạy thực nghiệm
+## 5. Hướng dẫn sử dụng và chạy thực nghiệm
 Mọi lệnh chạy dưới đây đều thực hiện tại thư mục gốc của dự án.
 
-### 5.1. Kiểm tra tính đúng đắn (Correctness Test)
-Để đối chiếu kết quả của nhóm với thư viện tham chiếu quốc tế SPMF:
+### 5.1. Chạy thuật toán đơn lẻ (Dùng main.jl)
+Nhóm cung cấp tệp `main.jl` giúp chạy linh hoạt các phiên bản thuật toán:
+*   **Chạy bản Tối ưu (Optimized):**
+    ```bash
+    julia --project=. main.jl data/benchmark/mushroom.txt 2000 output.txt opt
+    ```
+*   **Chạy bản Cơ bản (Basic):**
+    ```bash
+    julia --project=. main.jl data/benchmark/mushroom.txt 2000 output.txt basic
+    ```
+
+### 5.2. Chạy Unit Test tự động
+Để kiểm tra độ khớp kết quả (số lượng và nội dung) so với đáp án mẫu SPMF trong thư mục `data/spmf/`:
+```bash
+julia --project=. test/runtests.jl
+```
+
+### 5.3. So sánh hiệu năng tức thời (Benchmarking)
+So sánh trực tiếp Thời gian và RAM giữa bản **Set** và **BitArray** trên một tập dữ liệu cụ thể:
+```bash
+julia --project=. test/test_benchmark.jl data/benchmark/mushroom.txt 2000
+```
+
+### 5.4. Lấy đáp án mẫu từ SPMF (Tạo Groundtruth)
+Sử dụng tệp `spmf.jar` (Java) để trích xuất đáp án chuẩn phục vụ Unit Test:
+```bash
+# Cú pháp: java -jar spmf.jar run dEclat <input> <output> <minsup>
+java -jar spmf.jar run dEclat data/benchmark/mushroom.txt data/spmf/mushroom_spmf.txt 2000
+```
+
+### 5.5. Kiểm tra tính đúng đắn (Correctness Test)
+Để đối chiếu kết quả của nhóm với thư viện tham chiếu quốc tế SPMF trên quy mô lớn:
 ```bash
 julia --project=. test/test_correctness.jl
 ```
 
-### 5.2. Chạy thực nghiệm hiệu năng (Benchmark)
-Đo thời gian chạy, số lượng FI và RAM của bản Basic (Set) vs Optimized (BitArray):
+### 5.6. Chạy thực nghiệm hiệu năng tổng hợp
+Đo thời gian chạy, số lượng FI và RAM của bản Basic (Set) vs Optimized (BitArray) trên nhiều ngưỡng minsup:
 ```bash
 julia --project=. experiment/run_experiments_b_c_d.jl
 ```
 
-### 5.3. Thử nghiệm khả năng mở rộng và Độ dài giao dịch
-*   **Scalability**: julia --project=. experiment/run_scalability_e_jl.jl
-*   **Length Impact**: julia --project=. experiment/run_length_impact_f_jl.jl
+### 5.7. Thử nghiệm khả năng mở rộng và Độ dài giao dịch
+*   **Scalability**: `julia --project=. experiment/run_scalability_e_jl.jl`
+*   **Length Impact**: `julia --project=. experiment/run_length_impact_f_jl.jl`
 
-### 5.4. Vẽ biểu đồ báo cáo
-Sau khi đã chạy các script thực nghiệm và có file CSV trong experiment_results/, chạy lệnh sau để cập nhật biểu đồ:
+### 5.8. Vẽ biểu đồ báo cáo
+Sau khi đã chạy các script thực nghiệm và có file CSV trong `experiment_results/`, chạy lệnh sau để cập nhật biểu đồ:
 ```bash
 julia --project=. experiment/plot_results.jl
 ```
