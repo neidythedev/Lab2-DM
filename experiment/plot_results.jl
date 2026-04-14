@@ -55,8 +55,7 @@ savefig("charts/fi_count_sparse.png")
 # --- THÍ NGHIỆM 4.D: SO SÁNH BỘ NHỚ (MEMORY USAGE) ---
 println("--- Đang vẽ biểu đồ so sánh bộ nhớ... ---")
 
-# Lấy dữ liệu tại minsup trung bình của mỗi tập (dòng thứ 3 trong mỗi nhóm của file CSV)
-# Bạn có thể điều chỉnh lọc thủ công nếu muốn chính xác mốc trung bình
+# Lấy dữ liệu tại minsup trung vị của mỗi tập
 target_minsups = [
     ("Chess", 2557),
     ("Mushroom", 3367),
@@ -71,7 +70,11 @@ opt_rams = Float64[]
 for (d_name, m_val) in target_minsups
     row = df[(df.Dataset .== d_name) .& (df.Minsup .== m_val), :]
     if !isempty(row)
-        push!(labels, d_name)
+        # SỬA TẠI ĐÂY: Tạo nhãn mới bao gồm cả Tên và Minsup
+        # Dùng \n để xuống dòng cho đẹp nếu nhãn quá dài
+        new_label = "$d_name\n(minsup=$m_val)" 
+        
+        push!(labels, new_label)
         push!(basic_rams, row.Basic_RAM_MB[1])
         push!(opt_rams, row.Opt_RAM_MB[1])
     end
@@ -82,11 +85,12 @@ p_mem = groupedbar(labels, [basic_rams opt_rams],
     label=["Basic (Set)" "Optimized (BitArray)"],
     title="Peak Memory Usage Comparison",
     ylabel="Memory (MB)",
-    xlabel="Datasets at Average Minsup",
+    xlabel="Datasets and Chosen Minsup",
     color=[:gray :orange],
-    yaxis=:log10, # CỰC KỲ QUAN TRỌNG: Dùng thang log vì RAM lệch nhau hàng nghìn lần
+    yaxis=:log10, 
     legend=:topleft,
-    background_color_legend = RGBA(1,1,1,0.6))
+    background_color_legend = RGBA(1,1,1,0.6),
+    xrotation=0) # Có thể chỉnh góc nghiêng nếu nhãn bị dính nhau
 
 savefig("charts/memory_comparison_bar.png")
 
