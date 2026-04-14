@@ -24,23 +24,39 @@ julia --project=. -e "using Pkg; Pkg.instantiate()"
 ## 4. Cấu trúc thư mục
 ```text
 LAB2-DM/
-├── main.jl                # Trình điều khiển trung tâm (Runner chính)
-├── src/                   # Mã nguồn chính của thuật toán
-│   ├── algorithm/         # eclat_basic.jl, eclat_optimized.jl
-│   ├── structures.jl      # Định nghĩa ItemsetBasic, ItemsetOptimized
-│   └── utils.jl           # Module đọc/ghi file chuẩn SPMF
-├── test/                  # Kiểm tra tính đúng đắn và hiệu năng
-│   ├── runtests.jl        # Unit Test đối soát 100% với SPMF
-│   └── test_benchmark.jl  # So sánh tốc độ & RAM giữa Basic và Opt
-├── data/                  # Dữ liệu thực nghiệm
-│   ├── benchmark/         # Các tập dữ liệu mẫu (.txt)
-│   └── spmf/              # Đáp án mẫu từ thư viện SPMF (Groundtruth)
-├── notebooks/             # Demo trực quan bằng Jupyter Notebook
-├── experiment/            # Script thực hiện thí nghiệm chuyên sâu (Chương 4)
-├── experiment_results/    # Kết quả thô dưới dạng CSV
-├── application/           # Ứng dụng Phân tích giỏ hàng (Chương 5)
-├── Project.toml           # Quản lý môi trường
-└── README.md
+├── main.jl                 # Trình điều khiển chính, hỗ trợ tham số dòng lệnh (Level 4)
+├── spmf.jar                # Công cụ tham chiếu quốc tế để đối soát kết quả
+├── src/                    # Mã nguồn cốt lõi của dự án
+│   ├── algorithm/          # Hiện thực Eclat bản Basic (Set) và Optimized (BitArray)
+│   ├── structures.jl       # Định nghĩa các cấu trúc dữ liệu tùy chỉnh
+│   └── utils.jl            # Các hàm tiện ích: đọc/ghi file định dạng SPMF
+├── test/                   # Các script kiểm tra tính đúng đắn (Correctness)
+│   ├── runtests.jl         # Bộ Unit Test tự động cho toàn dự án
+│   ├── test_correctness.jl # Đối chiếu kết quả 1:1 với SPMF trên 20 kịch bản
+│   └── test_benchmark.jl   # Script đo lường hiệu năng cơ bản
+├── experiment/             # Phân tích thực nghiệm chuyên sâu (Chương 4)
+│   ├── run_experiments_b_c_d_jl.jl # Thu thập số liệu thời gian, bộ nhớ, FI count
+│   ├── run_scalability_e_jl.jl     # Thí nghiệm khả năng mở rộng trên tập Accidents
+│   ├── run_length_impact_f_jl.jl   # Thí nghiệm ảnh hưởng độ dài trên CSDL tổng hợp
+│   └── plot_results.jl     # Tự động hóa việc vẽ biểu đồ từ kết quả thực nghiệm
+├── experiment_results/     # Cơ sở dữ liệu thô phục vụ báo cáo
+│   ├── results_experiment.csv      # Kết quả so sánh Basic vs Optimized
+│   ├── results_scalability.csv     # Số liệu khả năng mở rộng
+│   ├── results_length.csv          # Số liệu ảnh hưởng độ dài giao dịch
+│   └── spmf_benchmark_results.csv  # Số liệu tham chiếu thu thập từ SPMF
+├── charts/                 # Thư mục chứa các biểu đồ PNG đã xuất (dùng trong báo cáo)
+├── application/            # Ứng dụng thực tế (Chương 5)
+│   ├── run_application.jl  # Phân tích giỏ hàng (MBA) trên tập Retail
+│   └── application_results.csv     # Top 10 luật kết hợp có Lift cao nhất
+├── data/                   # Toàn bộ dữ liệu sử dụng trong đồ án
+│   ├── benchmark/          # Các tập dữ liệu chuẩn: Chess, Mushroom, Retail...
+│   ├── toy/                # Dữ liệu nhỏ phục vụ các ví dụ minh họa tay
+│   ├── spmf/               # Các file đáp án chuẩn trích xuất từ phần mềm SPMF
+│   └── spmf_results/       # Lưu trữ chi tiết kết quả chạy đối soát
+├── docs/                   # Chứa báo cáo PDF hoàn thiện
+├── notebooks/              # Giao diện Demo trực quan bằng Jupyter Notebook
+├── Project.toml            # Định nghĩa môi trường và các thư viện phụ thuộc
+└── README.md               # Hướng dẫn cài đặt và sử dụng
 ```
 
 ## 5. Hướng dẫn sử dụng
