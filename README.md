@@ -127,8 +127,14 @@ julia --project=. experiment/run_experiments_b_c_d.jl
 ```
 
 ### 5.7. Thử nghiệm khả năng mở rộng và Độ dài giao dịch
-*   **Scalability**: `julia --project=. experiment/run_scalability_e_jl.jl`
-*   **Length Impact**: `julia --project=. experiment/run_length_impact_f_jl.jl`
+*   **Scalability**: 
+```bash
+julia --project=. experiment/run_scalability_e_jl.jl
+```
+*   **Length Impact**: 
+```bash 
+julia --project=. experiment/run_length_impact_f_jl.jl
+```
 
 ### 5.8. Vẽ biểu đồ báo cáo
 Sau khi đã chạy các script thực nghiệm và có file CSV trong `experiment_results/`, chạy lệnh sau để cập nhật biểu đồ:
